@@ -1,14 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView,TextInput,Button} from 'react-native';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.maintext}>
-        <Text style={styles.textcolor}>Hey this is my first react native app</Text>
+      <View style={styles.flexcontainer}>
+        <TextInput style={styles.textinputstyle} placeholder='Enter text here...'/>
+        <Button title='ADD'/>
       </View>
-      <Text>Hello World welcome to react native</Text>
-      <StatusBar style="auto" />
+      <View>
+        <Text>
+            your Goals are here
+        </Text>
+      </View>
     </SafeAreaView>
   );
 }
@@ -16,17 +20,15 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding:50,
   },
-  maintext:{
-    borderWidth: 2,
-    padding:10,
-    borderColor:'red',
-    backgroundColor:'blue',
+  flexcontainer:{
+    flexDirection:'row',
   },
-  textcolor:{
-    color:'white',
+  textinputstyle:{
+    borderWidth:1,
+    borderColor:'blue',
+    width:'80%',
+    backgroundColor:'#cccccc',
   }
 });
