@@ -7,17 +7,23 @@ import {
   SafeAreaView,
   TextInput,
   Button,
+  ScrollView,
+  FlatList,
 } from "react-native";
 
 export default function App() {
   const [text, settext] = useState("");
-
+  const [goals, setgoals] = useState([]);
   const changetext = (e) => {
     settext(e);
   };
 
   const addgoal = () => {
-    console.log(text);
+    setgoals((currentgoals) => [
+      ...currentgoals,
+      { text: text, id: Math.random().toString() },
+    ]);
+    // settext("");
   };
   return (
     <SafeAreaView style={styles.container}>
@@ -31,7 +37,20 @@ export default function App() {
         <Button title="ADD" onPress={addgoal} />
       </View>
       <View style={styles.goalcontainer}>
-        <Text>your Goals are here</Text>
+        <FlatList
+          data={goals}
+          renderItem={(goaldata) => {
+            return (
+              <View style={styles.goalsstyle}>
+                <Text style={styles.textstyle}>{goaldata.item.text}</Text>
+              </View>
+            );
+          }}
+          keyExtractor={(item) => {
+            return item.id;
+          }}
+          // alwaysBounceVertical={false}
+        />
       </View>
     </SafeAreaView>
   );
@@ -60,5 +79,16 @@ const styles = StyleSheet.create({
   },
   goalcontainer: {
     flex: 3,
+  },
+  goalsstyle: {
+    backgroundColor: "rgb(82,27,187)",
+    marginBottom: 36,
+    padding: 4,
+    borderWidth: 1,
+    borderRadius: 4,
+  },
+  textstyle: {
+    color: "white",
+    fontSize: 18,
   },
 });
