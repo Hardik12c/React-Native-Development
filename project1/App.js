@@ -7,9 +7,10 @@ import {
   SafeAreaView,
   TextInput,
   Button,
-  ScrollView,
   FlatList,
 } from "react-native";
+import Goalinput from "./component/Goalinput";
+import Goalitem from "./component/Goalitem";
 
 export default function App() {
   const [text, settext] = useState("");
@@ -23,33 +24,21 @@ export default function App() {
       ...currentgoals,
       { text: text, id: Math.random().toString() },
     ]);
-    // settext("");
+    settext("");
   };
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.flexcontainer}>
-        <TextInput
-          value={text}
-          onChangeText={changetext}
-          style={styles.textinputstyle}
-          placeholder="Enter text here..."
-        />
-        <Button title="ADD" onPress={addgoal} />
-      </View>
+      <Goalinput text={text} changetext={changetext} goaladd={addgoal}/>
       <View style={styles.goalcontainer}>
         <FlatList
           data={goals}
           renderItem={(goaldata) => {
-            return (
-              <View style={styles.goalsstyle}>
-                <Text style={styles.textstyle}>{goaldata.item.text}</Text>
-              </View>
-            );
+            return <Goalitem text={goaldata.item.text}/>
           }}
           keyExtractor={(item) => {
             return item.id;
           }}
-          // alwaysBounceVertical={false}
+          alwaysBounceVertical={false}
         />
       </View>
     </SafeAreaView>
@@ -62,33 +51,7 @@ const styles = StyleSheet.create({
     paddingTop: 50,
     paddingHorizontal: 16,
   },
-  flexcontainer: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginBottom: 20,
-    borderBottomWidth: 1,
-  },
-  textinputstyle: {
-    borderWidth: 1,
-    borderColor: "black",
-    width: "80%",
-    padding: 8,
-    marginRight: 8,
-  },
   goalcontainer: {
     flex: 3,
-  },
-  goalsstyle: {
-    backgroundColor: "rgb(82,27,187)",
-    marginBottom: 36,
-    padding: 4,
-    borderWidth: 1,
-    borderRadius: 4,
-  },
-  textstyle: {
-    color: "white",
-    fontSize: 18,
   },
 });
