@@ -5,7 +5,6 @@ import {
   Text,
   View,
   SafeAreaView,
-  TextInput,
   Button,
   FlatList,
 } from "react-native";
@@ -15,6 +14,8 @@ import Goalitem from "./component/Goalitem";
 export default function App() {
   const [text, settext] = useState("");
   const [goals, setgoals] = useState([]);
+  const [modalvisibility, setmodalvisibility] = useState(false);
+
   const changetext = (e) => {
     settext(e);
   };
@@ -28,12 +29,16 @@ export default function App() {
   };
   const deletegoal = (id) => {
     setgoals((goals) => {
-      return goals.filter((goal) => goal.id!==id);
+      return goals.filter((goal) => goal.id !== id);
     });
   };
+  const showmodal=()=>{
+    setmodalvisibility(true);
+  }
   return (
     <SafeAreaView style={styles.container}>
-      <Goalinput text={text} changetext={changetext} goaladd={addgoal} />
+      <Button title="Add a new goal" onPress={showmodal} />
+      <Goalinput text={text} changetext={changetext} goaladd={addgoal} visible={modalvisibility}/>
       <View style={styles.goalcontainer}>
         <FlatList
           data={goals}

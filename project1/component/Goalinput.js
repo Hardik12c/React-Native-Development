@@ -1,16 +1,18 @@
-import { StyleSheet, View, Button, TextInput } from "react-native";
+import { StyleSheet, View, Button, TextInput, Modal } from "react-native";
 
 export default function Goalinput(props) {
   return (
-    <View style={styles.flexcontainer}>
-      <TextInput
-        value={props.text}
-        onChangeText={props.changetext}
-        style={styles.textinputstyle}
-        placeholder="Enter text here..."
-      />
-      <Button title="ADD" onPress={props.goaladd} />
-    </View>
+    <Modal visible={props.visible} animationType="slide">
+      <View style={styles.flexcontainer}>
+        <TextInput
+          value={props.text}
+          onChangeText={props.changetext}
+          style={styles.textinputstyle}
+          placeholder="Enter text here..."
+        />
+        <Button title="ADD" onPress={props.goaladd} />
+      </View>
+    </Modal>
   );
 }
 
