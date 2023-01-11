@@ -26,14 +26,19 @@ export default function App() {
     ]);
     settext("");
   };
+  const deletegoal = (id) => {
+    setgoals((goals) => {
+      return goals.filter((goal) => goal.id!==id);
+    });
+  };
   return (
     <SafeAreaView style={styles.container}>
-      <Goalinput text={text} changetext={changetext} goaladd={addgoal}/>
+      <Goalinput text={text} changetext={changetext} goaladd={addgoal} />
       <View style={styles.goalcontainer}>
         <FlatList
           data={goals}
           renderItem={(goaldata) => {
-            return <Goalitem text={goaldata.item.text}/>
+            return <Goalitem item={goaldata.item} Ondeletegoal={deletegoal} />;
           }}
           keyExtractor={(item) => {
             return item.id;
