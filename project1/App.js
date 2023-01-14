@@ -32,13 +32,22 @@ export default function App() {
       return goals.filter((goal) => goal.id !== id);
     });
   };
-  const showmodal=()=>{
-    setmodalvisibility(true);
-  }
+  const togglemodal = () => {
+    if (modalvisibility) setmodalvisibility(false);
+    else setmodalvisibility(true);
+  };
   return (
     <SafeAreaView style={styles.container}>
-      <Button title="Add a new goal" onPress={showmodal} />
-      <Goalinput text={text} changetext={changetext} goaladd={addgoal} visible={modalvisibility}/>
+      <View style={styles.Button}>
+        <Button title="Add a new goal" onPress={togglemodal} />
+      </View>
+      <Goalinput
+        text={text}
+        changetext={changetext}
+        goaladd={addgoal}
+        togglemodal={togglemodal}
+        visible={modalvisibility}
+      />
       <View style={styles.goalcontainer}>
         <FlatList
           data={goals}
@@ -64,4 +73,7 @@ const styles = StyleSheet.create({
   goalcontainer: {
     flex: 3,
   },
+  Button:{
+    marginBottom:20
+  }
 });
