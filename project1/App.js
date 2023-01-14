@@ -21,11 +21,13 @@ export default function App() {
   };
 
   const addgoal = () => {
-    setgoals((currentgoals) => [
-      ...currentgoals,
-      { text: text, id: Math.random().toString() },
-    ]);
-    settext("");
+    if (text !== "") {
+      setgoals((currentgoals) => [
+        ...currentgoals,
+        { text: text, id: Math.random().toString() },
+      ]);
+      settext("");
+    }
   };
   const deletegoal = (id) => {
     setgoals((goals) => {
@@ -37,30 +39,35 @@ export default function App() {
     else setmodalvisibility(true);
   };
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.Button}>
-        <Button title="Add a new goal" onPress={togglemodal} />
-      </View>
-      <Goalinput
-        text={text}
-        changetext={changetext}
-        goaladd={addgoal}
-        togglemodal={togglemodal}
-        visible={modalvisibility}
-      />
-      <View style={styles.goalcontainer}>
-        <FlatList
-          data={goals}
-          renderItem={(goaldata) => {
-            return <Goalitem item={goaldata.item} Ondeletegoal={deletegoal} />;
-          }}
-          keyExtractor={(item) => {
-            return item.id;
-          }}
-          alwaysBounceVertical={false}
+    <>
+      <StatusBar style="light" />
+      <SafeAreaView style={styles.container}>
+        <View style={styles.Button}>
+          <Button color="#a065ec" title="Add a new goal" onPress={togglemodal} />
+        </View>
+        <Goalinput
+          text={text}
+          changetext={changetext}
+          goaladd={addgoal}
+          togglemodal={togglemodal}
+          visible={modalvisibility}
         />
-      </View>
-    </SafeAreaView>
+        <View style={styles.goalcontainer}>
+          <FlatList
+            data={goals}
+            renderItem={(goaldata) => {
+              return (
+                <Goalitem item={goaldata.item} Ondeletegoal={deletegoal} />
+              );
+            }}
+            keyExtractor={(item) => {
+              return item.id;
+            }}
+            alwaysBounceVertical={false}
+          />
+        </View>
+      </SafeAreaView>
+    </>
   );
 }
 
@@ -69,11 +76,12 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 50,
     paddingHorizontal: 16,
+    backgroundColor: "#2b0f7a",
   },
   goalcontainer: {
     flex: 3,
   },
-  Button:{
-    marginBottom:20
-  }
+  Button: {
+    marginBottom: 20,
+  },
 });

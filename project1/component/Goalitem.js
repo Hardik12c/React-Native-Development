@@ -17,9 +17,11 @@ export default function Goalitem(props) {
 const styles = StyleSheet.create({
   goalsstyle: {
     backgroundColor: "rgb(82,27,187)",
+    paddingHorizontal:8,
+    paddingVertical:4,
     marginBottom: 36,
     borderWidth: 1,
-    borderRadius: 4,
+    borderRadius: 8,
   },
   presseditem: {
     backgroundColor: "green",
