@@ -2,12 +2,13 @@ import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
 export default function Button(props) {
-  const handlepress = () => {
-    console.log("pressed");
-  };
   return (
     <View style={styles.buttoncontainer}>
-      <Pressable style={styles.innercontainer} android_ripple={{color:'#600432'}} onPress={handlepress}>
+      <Pressable
+        style={styles.innercontainer}
+        android_ripple={{ color: "#600432",borderless:false }}
+        onPress={props.handlepress}
+      >
         <Text style={styles.buttontext}>{props.children}</Text>
       </Pressable>
     </View>
@@ -15,15 +16,19 @@ export default function Button(props) {
 }
 
 const styles = StyleSheet.create({
+  buttoncontainer: {
+    margin: 4,
+    overflow:'hidden',
+    borderRadius: 28,
+  },
   innercontainer: {
     backgroundColor: "#72063c",
     borderRadius: 28,
     paddingHorizontal: 20,
     paddingVertical: 8,
-    margin: 4,
   },
   buttontext: {
-    color:'white',
+    color: "white",
     textAlign: "center",
   },
 });
