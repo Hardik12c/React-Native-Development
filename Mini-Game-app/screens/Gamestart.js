@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Alert, StyleSheet, TextInput, View } from "react-native";
 import Button from "../components/Button";
 
-export default function Gamestart() {
+export default function Gamestart(props) {
   const [enterednumber, setenterednumber] = useState("");
   const inputhandler = (enterednumber) => {
     setenterednumber(enterednumber);
@@ -20,6 +20,7 @@ export default function Gamestart() {
       );
       return;
     }
+    props.screenupdate(number);
   };
   return (
     <View style={styles.inputcontainer}>
