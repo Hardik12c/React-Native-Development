@@ -7,16 +7,16 @@ export default function Gamestart(props) {
   const inputhandler = (enterednumber) => {
     setenterednumber(enterednumber);
   };
-  const resetinputhandler=()=>{
-    setenterednumber('');
-  }
+  const resetinputhandler = () => {
+    setenterednumber("");
+  };
   const confirminputhandler = () => {
     const number = parseInt(enterednumber);
-    if (isNaN(number) || number < 0 || number > 99) {
+    if (isNaN(number) || number <=0 || number > 99) {
       Alert.alert(
         "Invalid Number",
         "Number must be in the range between 0 and 99",
-        [{text:'Okay',style:'default',onPress:resetinputhandler}]
+        [{ text: "Okay", style: "default", onPress: resetinputhandler }]
       );
       return;
     }
