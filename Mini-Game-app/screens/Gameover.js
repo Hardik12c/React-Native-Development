@@ -1,7 +1,7 @@
-import React from 'react'
+import { Text } from 'react-native'
 
 export default function Gameover() {
   return (
-    <div>Gameover</div>
+    <Text>Gameover</Text>
   )
 }
