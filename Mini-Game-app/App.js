@@ -12,8 +12,9 @@ export default function App() {
   const pickednumberhandler = (pickednumber) => {
     setuserpickednumber(pickednumber);
   };
-  const gameoverhandler = () => {
+  const gameoverhandler = (numberofrounds) => {
     setgameover(true);
+    setrounds(numberofrounds);
   };
   const startgamehandler = () => {
     setuserpickednumber(null);

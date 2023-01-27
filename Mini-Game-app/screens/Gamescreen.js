@@ -24,7 +24,7 @@ export default function Gamescreen({ userenterednumber, Ongameover }) {
   const [guessrounds, setguessrounds] = useState([initialguess]);
   useEffect(() => {
     if (currentguess == userenterednumber) {
-      Ongameover();
+      Ongameover(guessrounds.length);
     }
   }, [currentguess, userenterednumber, Ongameover]);
   useEffect(() => {
