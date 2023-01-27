@@ -5,16 +5,21 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 import Gameover from "./screens/Gameover";
 
-
 export default function App() {
   const [gameover, setgameover] = useState(false);
   const [userpickednumber, setuserpickednumber] = useState(null);
+  const [rounds, setrounds] = useState(0);
   const pickednumberhandler = (pickednumber) => {
     setuserpickednumber(pickednumber);
   };
-  const gameoverhandler=()=>{
+  const gameoverhandler = () => {
     setgameover(true);
-  }
+  };
+  const startgamehandler = () => {
+    setuserpickednumber(null);
+    setrounds(0);
+    setgameover(false);
+  };
   return (
     <LinearGradient style={styles.root} colors={["#4e0329", "#edc43f"]}>
       <ImageBackground
@@ -24,14 +29,20 @@ export default function App() {
         imageStyle={styles.imageStyle}
       >
         <SafeAreaView style={styles.root}>
-          {/* {gameover ? ( */}
-            <Gameover />
-          {/* ) : 
-          (userpickednumber ? (
-            <Gamescreen Ongameover={gameoverhandler} userenterednumber={userpickednumber} />
+          {gameover ? (
+            <Gameover
+              usernumber={userpickednumber}
+              roundsnumber={rounds}
+              onstartgame={startgamehandler}
+            />
+          ) : userpickednumber ? (
+            <Gamescreen
+              Ongameover={gameoverhandler}
+              userenterednumber={userpickednumber}
+            />
           ) : (
             <Gamestart screenupdate={pickednumberhandler} />
-          ))} */}
+          )}
         </SafeAreaView>
       </ImageBackground>
     </LinearGradient>
