@@ -4,6 +4,8 @@ import Gamescreen from "./screens/Gamescreen";
 import { LinearGradient } from "expo-linear-gradient";
 import { useState } from "react";
 import Gameover from "./screens/Gameover";
+
+
 export default function App() {
   const [gameover, setgameover] = useState(false);
   const [userpickednumber, setuserpickednumber] = useState(null);
@@ -22,14 +24,14 @@ export default function App() {
         imageStyle={styles.imageStyle}
       >
         <SafeAreaView style={styles.root}>
-          {gameover ? (
+          {/* {gameover ? ( */}
             <Gameover />
-          ) : 
+          {/* ) : 
           (userpickednumber ? (
             <Gamescreen Ongameover={gameoverhandler} userenterednumber={userpickednumber} />
           ) : (
             <Gamestart screenupdate={pickednumberhandler} />
-          ))}
+          ))} */}
         </SafeAreaView>
       </ImageBackground>
     </LinearGradient>

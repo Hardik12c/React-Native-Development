@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
 import Button from "../components/Button";
+import Card from "../components/Card";
 import Numberscreen from "../components/Numberscreen";
 import Title from "../components/Title";
+
+
 function generateRandomBetween(min, max, exclude) {
   const rndNum = Math.floor(Math.random() * (max - min)) + min;
 
@@ -12,17 +15,18 @@ function generateRandomBetween(min, max, exclude) {
     return rndNum;
   }
 }
+
 let minboundary = 1;
 let maxboundary = 100;
-export default function Gamescreen({userenterednumber,Ongameover}) {
+export default function Gamescreen({ userenterednumber, Ongameover }) {
   const initialguess = generateRandomBetween(1, 100, userenterednumber);
   const [currentguess, setcurrentguess] = useState(initialguess);
   useEffect(() => {
-    if(currentguess==userenterednumber){
+    if (currentguess == userenterednumber) {
       Ongameover();
     }
-  }, [currentguess,userenterednumber,Ongameover])
-  
+  }, [currentguess, userenterednumber, Ongameover]);
+
   const nextnumberguess = (direction) => {
     if (
       (direction === "lower" && currentguess < userenterednumber) ||
@@ -52,13 +56,19 @@ export default function Gamescreen({userenterednumber,Ongameover}) {
     <View style={styles.screen}>
       <Title children={`Opponent's Guess`} />
       <Numberscreen guess={currentguess} />
-      <View>
-        <Text>Higher or Lower?</Text>
+      <Card>
+        <Text style={styles.guesshead}>Higher or Lower?</Text>
         <View style={styles.buttoncontainer}>
-          <Button handlepress={nextnumberguess.bind(this, "lower")}>-</Button>
-          <Button handlepress={nextnumberguess.bind(this, "greater")}>+</Button>
+          <View style={{ flex: 1 }}>
+            <Button handlepress={nextnumberguess.bind(this, "lower")}>-</Button>
+          </View>
+          <View style={{ flex: 1 }}>
+            <Button handlepress={nextnumberguess.bind(this, "greater")}>
+              +
+            </Button>
+          </View>
         </View>
-      </View>
+      </Card>
     </View>
   );
 }
@@ -68,8 +78,12 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 24,
   },
+  guesshead: {
+    marginBottom: 30,
+    color: "#ddb52f",
+    fontSize: 26,
+  },
   buttoncontainer: {
     flexDirection: "row",
-    // flex:1,
   },
 });
