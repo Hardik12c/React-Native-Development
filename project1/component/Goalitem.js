@@ -4,9 +4,9 @@ export default function Goalitem(props) {
   return (
     <View style={styles.goalsstyle}>
       <Pressable
-        // android_ripple={{ color: "#4b0082" }}  //this works only in android
+        android_ripple={{ color: "#4b0082" }}  //this works only in android
         onPress={props.Ondeletegoal.bind(this, props.item.id)}
-        style={({ pressed }) => pressed && styles.presseditem} //This works with both android and ios
+        // style={({ pressed }) => pressed && styles.presseditem} //This works with both android and ios
       >
         <Text style={styles.textstyle}>{props.item.text}</Text>
       </Pressable>
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
   },
   presseditem: {
-    backgroundColor: "green",
+    backgroundColor: "#4b0082",
   },
   textstyle: {
     color: "white",
