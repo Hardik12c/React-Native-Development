@@ -87,16 +87,13 @@ export default function Gamescreen({ userenterednumber, Ongameover }) {
           </View>
         </Card>
         <View style={styles.listcontainer}>
-          <FlatList
-            data={guessrounds}
-            renderItem={(itemData) => (
-              <GuessLogItem
-                roundNumber={guessRoundsListLength - itemData.index}
-                guess={itemData.item}
-              />
-            )}
-            keyExtractor={(item) => item}
-          />
+          {guessrounds.map((itemData, index) => (
+            <GuessLogItem
+              key={index}
+              roundNumber={guessRoundsListLength - index}
+              guess={itemData}
+            />
+          ))}
         </View>
       </View>
     </ScrollView>
